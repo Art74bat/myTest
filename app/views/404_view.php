@@ -1,0 +1,1 @@
+<h1 class="not_found">Page not found</h1>
