@@ -13,7 +13,6 @@ class Route
 
     // разделить запрос
     $routes = explode('/', $_SERVER['REQUEST_URI']);
-    // var_dump($_SERVER['REQUEST_URI']);
 
     // имя контроллера
     if (!empty($routes[1])) {
@@ -24,7 +23,7 @@ class Route
     if (!empty($routes[2])) {
       $action_name = $routes[2];
     }
-
+    // параметры в запросе
     if (!empty($routes[3])) {
       $param = $routes[3];
     }
@@ -45,43 +44,28 @@ class Route
     // подключить файл с классом контроллера
     $controller_file = strtolower($controller_name) . '.php';
     $controller_path = "app/controllers/" . $controller_file;
-    try {
-      if (!file_exists($controller_path)) {
-        throw new \Exception("Файл не найден!");
-      }
+    if (file_exists($controller_path)) {
       include "app/controllers/" . $controller_file;
-    } catch (\Exception $e) {
-      echo $e->getMessage();
+    } else {
+      // если что перенаправить..
+      Route::ErrorPage404();
     }
-
-    // else
-    // {
-    //   // если что перенаправить..
-    //   Route::ErrorPage404();
-    // }
 
     // создать контроллер
     $controller = new $controller_name;
     $action = $action_name;
     try {
       if (!method_exists($controller, $action)) {
-        throw new \Exception("Контроллер не найден!");
+        throw new \Exception("Метод контроллера не найден!!!");
       }
       // выполнить действие контроллера
       $controller->$action($param);
     } catch (\Exception $e) {
       echo $th->getMessage();
     }
-    // if (method_exists($controller, $action)) {
-    //   // выполнить действие контроллера
-    //   $controller->$action($param);
-    // } else {
-    //   // если что перенаправить..
-    //   Route::ErrorPage404();
-    // }
-
   }
 
+  // показать  страницу 404....
   static function ErrorPage404()
   {
     $host = 'http://' . $_SERVER['HTTP_HOST'] . '/';
