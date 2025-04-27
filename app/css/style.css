@@ -40,8 +40,9 @@
   max-width: 1920px;
   min-width: 350px;
   margin: 0 auto;
-  margin-left: 40px;
-  border: 1px solid red;
+  @media(max-width:1620px){
+  margin-left: 10px;
+  } 
 }
 
 .header {
@@ -111,8 +112,8 @@
 .top__wrapp {
   margin-left: 195px;
   @media (max-width: 1680px) {
-    margin: 20px;
-  }
+  margin-left: 20px;
+  } 
 }
 .title {
   color: rgb(255, 255, 255);
