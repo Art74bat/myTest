@@ -1,8 +1,8 @@
 <?php
-
+// подключить шаблон главной страницы
 class View
 {
-    function generate($content_view,$template_view,$paginate=null,$data=null,$count=null,)
+    function generate(string $content_view, string $template_view, array $data = null, Paginate $paginate=null,)
     {	
 		  include 'app/views/'.$template_view;
     }

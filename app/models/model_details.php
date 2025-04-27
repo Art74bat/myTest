@@ -1,7 +1,7 @@
 <?php
 class Model_Details extends Model
 {
-	public function connect()
+	public function connect(): PDO
 	{
 		$host = '127.0.0.1';
 		$db = 'news';
@@ -25,7 +25,7 @@ class Model_Details extends Model
 		}
 		return $pdo;
 	}
-	public function get_data($sql,$connect,$arg=null)
+	public function get_data(string $sql,PDO $connect, ? int $arg=null): mixed
 	{	
 		if(!$arg){
 			return $connect->query($sql);

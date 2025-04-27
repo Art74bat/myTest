@@ -7,17 +7,15 @@ class Controller_Details extends Controller
 		$this->view = new View();
 	}
 	
-	function action_index($param)
+	function action_index(? int $param): void
 	{
 		
-		$paginate = ''; // для generate (....,$paginate=null,..)
 		$sql = "SELECT * FROM news WHERE id =:id";
 		$connect = $this->model->connect();
 		$data = $this->model->get_data($sql, $connect,$param)->fetch();
 		$this->view->generate(
 			'detail_view.php', 
 			'template_view.php',
-			$paginate, 
-			$data);
+			$data,);
 	}
 }

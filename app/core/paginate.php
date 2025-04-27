@@ -7,7 +7,7 @@ class Paginate
 	{
 		$this->model = new Model_Main();
 	}
-    public function count ()
+    public function count (): float
     {
         $sqlCount = "SELECT COUNT(id) FROM news";
         $connect = $this->model->connect();
@@ -15,7 +15,7 @@ class Paginate
         $count_page = ceil($count / 4);
         return $count_page;
     }
-    public function current_page ($request_uri)
+    public function current_page ($request_uri): int|string
     {
         $page_num = explode('/',$request_uri);
         if (empty($page_num[3])) {

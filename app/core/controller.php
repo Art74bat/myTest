@@ -10,7 +10,7 @@ class Controller {
 		$this->view = new View();
 	}
 	
-	function action_index($param)
+	function action_index(? int $param)
 	{
 	}
 }

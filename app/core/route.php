@@ -7,7 +7,6 @@ class Route
 		// контроллер, модель и действие для index.php(по умолчанию)
 		$controller_name = 'Main';
 		$action_name = 'index';
-		// $model_name = 'Main';
 		// Массив параметров из URI запроса.
 		$param = null;
 
@@ -47,7 +46,7 @@ class Route
 			include "app/models/".$model_file;
 		}
 
-
+		// исключения!!!!
 		// подключить файл с классом контроллера
 		$controller_file = strtolower($controller_name).'.php';
 		$controller_path = "app/controllers/".$controller_file;
@@ -67,7 +66,7 @@ class Route
 		
 		if(method_exists($controller, $action))
 		{
-			// определить действие контроллера
+			// выполнить действие контроллера
 			$controller->$action($param);
 		}
 		else

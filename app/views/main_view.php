@@ -1,21 +1,31 @@
 <?php 
     $current_page =  $paginate->current_page($_SERVER['REQUEST_URI']); //текущяя страница
     $count_page = $paginate->count();                                  // всего страниц
+    $top_data = Controller_Main::top();                                //для секции top (background,title,sub_title)
 ?>
 
-<section class="top">
+<section class="top" style="
+                height: 646px;
+                padding-top: 218px;
+                background-image: url('/../app/images/jpg/<?= $top_data['image'] ?>');
+                background-size: cover;
+                background-position: 50% 46%;
+                background-repeat: no-repeat;">
     <div class="top__wrapp">
-        <h1 class="title"><?= $data[0]['title'] ?></h1>
-        <h2 class="sub_title"><?= $data[0]['announce'] ?></h2>
+        <h1 class="title"><?= $top_data['title'] ?></h1>
+        <h2 class="sub_title"><?= $top_data['announce'] ?></h2>
     </div>
 </section>
 <section class="news">
     <h2 class="news__title">Новости</h2>  
-    <?= $current_page; ?> 
+    <!-- <?php var_dump($top_data); ?>   -->
+    <!-- <?= gettype($paginate);?> -->
+    <!-- <?= $current_page; ?>  -->
     <div class="card__wrapp">
 	<?php foreach ($data as $row): ?>
 		<ul class="card">
-    	    <li class="date"><?php
+    	    <li class="date">
+            <?php
 				$data = substr($row['date'],0,10);
                 $data = explode('-', $data);
 				echo "$data[1].$data[2].$data[0]";
